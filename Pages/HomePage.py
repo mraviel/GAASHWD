@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import time
-from datetime import datetime
 
 
 class HomePage:
@@ -32,7 +31,7 @@ class HomePage:
             if (scrollOffset > 0) {
                 window.scrollBy({ top: scrollOffset, behavior: 'smooth' });
             } """, table)
-        time.sleep(1)
+        time.sleep(1) # -- make change visible
     
     def get_status_table(self):
         table = self.driver.find_element(By.CSS_SELECTOR, "table.gww-w-full.gww-caption-bottom")

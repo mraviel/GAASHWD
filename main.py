@@ -5,6 +5,7 @@ from selenium.common.exceptions import TimeoutException
 from datetime import datetime
 import csv
 import os
+import sys
 
 from Pages.HomePage import HomePage
 
@@ -47,7 +48,6 @@ def track_package(tracking_num: str):
 
     home_page = HomePage(driver)
 
-    # remove privacy popup
     home_page.input_tracking_number(tracking_num)
     home_page.submit_track_number()
     home_page.scoll_to_track_status()
@@ -62,5 +62,10 @@ def track_package(tracking_num: str):
 
 
 if __name__ == '__main__':
-    track_package('AP28344067')
+    if len(sys.argv) != 2:
+        print("Usage: python main.py [tracking_number]")
+        sys.exit(1)
+
+    tracking_number = sys.argv[1]
+    track_package(tracking_number)
     
